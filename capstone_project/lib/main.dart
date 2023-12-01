@@ -1,5 +1,4 @@
 import 'package:capstone_project/screens/new_pass/new_pass.dart';
-import 'package:capstone_project/screens/view_available_doctor/doctor_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
