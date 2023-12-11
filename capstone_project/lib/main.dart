@@ -1,4 +1,5 @@
 import 'package:capstone_project/provider/account_screen/contact_us_screen/contact_us_provider.dart';
+import 'package:capstone_project/provider/login_provider/login_provider.dart';
 import 'package:capstone_project/provider/medicine_provider.dart';
 import 'package:capstone_project/provider/regiter_provider/otp_provider.dart';
 import 'package:capstone_project/provider/regiter_provider/register_provider.dart';
@@ -21,6 +22,8 @@ void main() {
       ),
       ChangeNotifierProvider(
         create: (context) => ContactUsProvider(),
+      ),ChangeNotifierProvider(
+        create: (context) => LoginProvider(),
       ),
     ],
     child: const MyApp(),

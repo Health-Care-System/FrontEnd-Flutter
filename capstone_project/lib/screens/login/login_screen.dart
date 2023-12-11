@@ -3,6 +3,7 @@
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/constants/text_theme.dart';
 import 'package:capstone_project/provider/login_provider/login_provider.dart';
+import 'package:capstone_project/screens/view_available_doctor/doctor_screen.dart';
 import 'package:capstone_project/widgets/button_widget.dart';
 import 'package:capstone_project/widgets/google_button_widget.dart';
 import 'package:capstone_project/widgets/text_field.dart';
@@ -18,10 +19,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late ViewModelLogin viewlogin;
+  late LoginProvider viewlogin;
   @override
   void initState() {
-    viewlogin = Provider.of<ViewModelLogin>(context, listen: false);
+    viewlogin = Provider.of<LoginProvider>(context, listen: false);
     super.initState();
   }
 
@@ -91,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 20),
             SizedBox(
                 width: double.infinity,
-                child: Consumer<ViewModelLogin>(
+                child: Consumer<LoginProvider>(
                   builder: (context, myType, child) {
                     return ButtonWidget(
                       title: 'Login',
