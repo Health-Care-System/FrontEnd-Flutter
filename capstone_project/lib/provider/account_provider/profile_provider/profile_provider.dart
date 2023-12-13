@@ -61,47 +61,48 @@ class ProfileProvider extends ChangeNotifier {
       context: context,
       builder: (context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 1 / 3,
+          height: MediaQuery.of(context).size.height * 1 / 3.7,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .05,
-                child: ListTile(
-                  leading: Container(
-                    width: 24,
-                    height: 24,
-                    child: SvgPicture.asset(
-                        'assets/icons/account_screen/profile_screen/bottom_sheet/edit_foto_icon.svg'),
-                  ),
-                  title: const Text(
-                    'Edit Foto Profil',
-                  ),
-                  trailing: const Icon(
-                    Icons.close_rounded,
-                    size: 20,
-                  ),
+              BottomSheetTile(
+                title: 'Edit Foto Profil',
+                iconLeading: SvgPicture.asset(
+                  'assets/icons/account_screen/profile_screen/bottom_sheet/edit_foto_icon.svg',
+                  height: 20,
                 ),
-              ),
-              const SizedBox(height: 10),
-              const RowTile(),
-              const SizedBox(height: 4),
-              SizedBox(
-                height: 40,
-                child: ListTile(
-                  tileColor: Colors.white,
-                  leading: const Icon(Icons.image),
-                  title: const Text('Pilih Gambar'),
-                ),
+                iconTrailing: Icons.close_rounded,
+                onPressedTrailing: () => Navigator.pop(context),
               ),
               const SizedBox(height: 4),
-              SizedBox(
-                height: 40,
-                child: ListTile(
-                  tileColor: Colors.white,
-                  leading: const Icon(Icons.delete),
-                  title: const Text('Hapus Gambar'),
+              BottomSheetTile(
+                title: 'Ambil Gambar',
+                iconLeading: SvgPicture.asset(
+                  'assets/icons/account_screen/profile_screen/bottom_sheet/ambil_foto_icon.svg',
+                  height: 20,
                 ),
+                onPressed: () {},
+                tileColor: ThemeColor().white,
+              ),
+              const SizedBox(height: 4),
+              BottomSheetTile(
+                title: 'Pilih Gambar',
+                iconLeading: SvgPicture.asset(
+                  'assets/icons/account_screen/profile_screen/bottom_sheet/pilih_foto_icon.svg',
+                  height: 18,
+                ),
+                onPressed: () {},
+                tileColor: ThemeColor().white,
+              ),
+              const SizedBox(height: 4),
+              BottomSheetTile(
+                title: 'Hapus Gambar',
+                iconLeading: SvgPicture.asset(
+                  'assets/icons/account_screen/profile_screen/bottom_sheet/hapus_foto_icon.svg',
+                  height: 20,
+                ),
+                onPressed: () {},
+                tileColor: ThemeColor().white,
               ),
             ],
           ),
