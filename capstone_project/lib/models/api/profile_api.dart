@@ -16,19 +16,19 @@ class ProfileApi {
 
     try {
       final response = await Dio().get(
-        // '${Urls.baseUrl}${Urls.profile}',
-        // options: Options(
-        //   headers: {
-        //     "Authorization": "Bearer $token",
-        //   },
-        // ),
-        'https://dev.healthify.my.id/users/profile',
+        '${Urls.baseUrl}${Urls.profile}',
         options: Options(
           headers: {
-            "Authorization":
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkaXR5YUBnbWFpbC5jb20iLCJleHAiOjE3MDI2NzY4NjIsImlkIjozLCJyb2xlIjoidXNlciJ9.LXDCrrCEvNl2cnUpwh91-XZSHKMyOv7UZ-y9p9lQu1U",
+            "Authorization": "Bearer $token",
           },
         ),
+        // 'https://dev.healthify.my.id/users/profile',
+        // options: Options(
+        //   headers: {
+        //     "Authorization":
+        //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkaXR5YUBnbWFpbC5jb20iLCJleHAiOjE3MDI2NzY4NjIsImlkIjozLCJyb2xlIjoidXNlciJ9.LXDCrrCEvNl2cnUpwh91-XZSHKMyOv7UZ-y9p9lQu1U",
+        //   },
+        // ),
       );
 
       final profileModel = profileModelFromJson(jsonEncode(response.data));
