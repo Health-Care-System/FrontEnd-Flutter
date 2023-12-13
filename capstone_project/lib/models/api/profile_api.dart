@@ -41,6 +41,19 @@ class ProfileApi {
 
         debugPrint(e.response?.statusMessage);
         debugPrint('${e.response?.statusCode}');
+
+        final errorMessageModel = errorModel.meta.message;
+        throw errorMessageModel;
+      } else if (e.response?.statusCode == 500) {
+        final errorModel = profileModelFromJson(jsonEncode(e.response?.data));
+        debugPrint(
+            'success: ${errorModel.meta.success}, message: ${errorModel.meta.message}');
+
+        debugPrint(e.response?.statusMessage);
+        debugPrint('${e.response?.statusCode}');
+
+        final errorMessageModel = errorModel.meta.message;
+        throw errorMessageModel;
       }
     }
     return userData;
