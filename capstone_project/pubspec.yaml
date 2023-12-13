@@ -51,7 +51,7 @@ dependencies:
   group_button: ^5.3.3
   cool_dropdown: ^2.1.0
   intl: ^0.18.1
-  
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +82,7 @@ flutter:
     - assets/icons/account_screen/
     - assets/icons/account_screen/contact_us_screen/
     - assets/icons/account_screen/profile_screen/
+    - assets/icons/account_screen/profile_screen/bottom_sheet/
     - assets/icons/bottom_bar/
 
   # To add fonts to application

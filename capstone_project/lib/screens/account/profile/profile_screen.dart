@@ -1,5 +1,7 @@
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/constants/text_theme.dart';
+import 'package:capstone_project/models/api/profile_api.dart';
+import 'package:capstone_project/provider/account_provider/profile_provider/profile_provider.dart';
 import 'package:capstone_project/screens/account/profile/widgets/profile_tile_widget.dart';
 import 'package:capstone_project/screens/account/profile/widgets/text_field_profile.dart';
 import 'package:capstone_project/screens/account/profile/widgets/text_field_tb_bb.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:group_button/group_button.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:textfield_datepicker/textfield_datepicker.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -45,6 +48,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
+
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus?.unfocus();
@@ -58,6 +63,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: ThemeTextStyle().titleMedium,
           ),
           centerTitle: true,
+          leading: BackButton(
+            onPressed: () async {
+              final data = await ProfileApi.getUserProfile();
+              debugPrint(data.toString());
+            },
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -68,15 +79,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 16),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 1 / 3,
-                    height: MediaQuery.of(context).size.height * 1 / 7,
-                    decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/profile_pic.jpg'),
-                        fit: BoxFit.cover,
+                  GestureDetector(
+                    onTap: () {
+                      profileProvider.openProfileBottomSheet(context);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 1 / 3,
+                      height: MediaQuery.of(context).size.height * 1 / 7,
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/profile_pic.jpg'),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -333,6 +349,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
