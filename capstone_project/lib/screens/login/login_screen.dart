@@ -23,6 +23,26 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
   }
 
+  void _showLoginFailureAlert(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Login gagal'),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -119,6 +139,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 final loginResult = loginProvider.login;
 
                                 if (loginResult?.meta.success == false) {
+                                  _showLoginFailureAlert(context,
+                                      'Email/Password tidak terdaftar, silahkan coba lagi');
                                   // Handle login failure (e.g., show an error message)
                                 } else {
                                   SharedPreferencesUtils.setToken(
