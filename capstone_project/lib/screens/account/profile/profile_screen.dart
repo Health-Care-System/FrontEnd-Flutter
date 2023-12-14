@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/constants/text_theme.dart';
 import 'package:capstone_project/models/api/profile_api.dart';
+import 'package:capstone_project/models/profile_model.dart';
 import 'package:capstone_project/provider/account_provider/profile_provider/profile_provider.dart';
 import 'package:capstone_project/screens/account/profile/new_pass_screen/new_pass_screen.dart';
 import 'package:capstone_project/screens/account/profile/widgets/profile_tile_widget.dart';
@@ -10,6 +13,7 @@ import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
 import 'package:group_button/group_button.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +54,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfileProvider>(context);
+    profileProvider.getUserDatas();
+    // profileProvider.getProfilePicture();
+    // profileProvider.getEmail();
+    // profileProvider.getFullName();
 
     return GestureDetector(
       onTap: () {
@@ -84,18 +92,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     onTap: () {
                       profileProvider.openProfileBottomSheet(context);
                     },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 1 / 3,
-                      height: MediaQuery.of(context).size.height * 1 / 7,
-                      decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/profile_pic.jpg'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
+                    child: profileProvider.profilePicture == null
+                        ? SizedBox(
+                            width: MediaQuery.of(context).size.width * 1 / 3,
+                            height: MediaQuery.of(context).size.height * 1 / 7,
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 1 / 3,
+                                  height: MediaQuery.of(context).size.height *
+                                      1 /
+                                      7,
+                                  decoration: BoxDecoration(
+                                    color: ThemeColor().profileCircle,
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                                Center(
+                                  child: SvgPicture.asset(
+                                      'assets/icons/account_screen/profile_screen/bottom_sheet/edit_foto_icon.svg'),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(
+                            width: MediaQuery.of(context).size.width * 1 / 3,
+                            height: MediaQuery.of(context).size.height * 1 / 7,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: FileImage(
+                                  File(profileProvider.profilePicture),
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                   ),
                   const SizedBox(height: 12),
                   Text(
@@ -104,7 +137,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    'Mulawarman Suhendra',
+                    profileProvider.fullNameValue,
                     style: ThemeTextStyle().titleMedium,
                   ),
                   const SizedBox(height: 16),
@@ -134,7 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     content: Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Text(
-                        'mulawarman@gmail.com',
+                        profileProvider.emailValue,
                         style: ThemeTextStyle().bodySmall,
                       ),
                     ),
@@ -194,6 +227,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'assets/icons/account_screen/profile_screen/calendar_icon.svg',
                     ),
                     content: TextfieldDatePicker(
+                      onFieldSubmitted: (date) {},
                       style: ThemeTextStyle().bodySmall,
                       textfieldDatePickerController: datePickerController,
                       materialDatePickerFirstDate: DateTime(1970),

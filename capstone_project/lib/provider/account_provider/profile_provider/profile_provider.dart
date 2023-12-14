@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:capstone_project/constants/color_theme.dart';
-import 'package:capstone_project/constants/text_theme.dart';
 import 'package:capstone_project/models/api/profile_api.dart';
 import 'package:capstone_project/models/profile_model.dart';
 import 'package:capstone_project/screens/account/profile/widgets/bottomsheet_tile.dart';
@@ -7,27 +8,32 @@ import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:group_button/group_button.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileProvider extends ChangeNotifier {
   String? _tbValue;
-  get tbValue => _tbValue;
+  get tbValue => _tbValue ?? "";
   String? _bbValue;
-  get bbValue => _bbValue;
+  get bbValue => _bbValue ?? "";
 
+  File? _profilePicture;
+  get profilePicture => _profilePicture;
   String? _fullNameValue;
-  get fullNameValue => _fullNameValue;
+  get fullNameValue => _fullNameValue ?? "";
   String? _emailValue;
-  get emailValue => _emailValue;
+  get emailValue => _emailValue ?? "";
   String? _passwordValue;
-  get passwordValue => _passwordValue;
+  get passwordValue => _passwordValue ?? "";
   String? _phoneValue;
-  get phoneValue => _phoneValue;
+  get phoneValue => _phoneValue ?? "";
   String? _birthdateValue;
-  get birthdateValue => _birthdateValue;
+  get birthdateValue => _birthdateValue ?? "";
+  DateTime? _initialDate;
+  get initialDate => _initialDate ?? "";
   String? _gender;
-  get gender => _gender;
+  get gender => _gender ?? "";
   String? _bloodType;
-  get bloodType => _bloodType;
+  get bloodType => _bloodType ?? "";
 
   final TextEditingController _tbController = TextEditingController();
   TextEditingController get tbController => _tbController;
@@ -43,21 +49,71 @@ class ProfileProvider extends ChangeNotifier {
   final DropdownController _bloodTypeController = DropdownController();
   DropdownController get bloodTypeController => _bloodTypeController;
 
-  Future<ProfileResults> getUserProfile() async {
-    ProfileResults? dataResult;
+  Future<ProfileResults> getUserDatas() async {
+    ProfileResults? response;
     try {
-      final response = await ProfileApi.getUserProfile();
-      dataResult = response!;
+      response = await ProfileApi.getUserProfile();
     } catch (e) {
       debugPrint(e.toString());
     }
 
-    return dataResult!;
+    debugPrint(response?.toString());
+    getProfilePicture();
+    getFullName();
+    getEmail();
+    return response!;
+  }
+
+  void getProfilePicture() async {
+    final userData = await getUserDatas();
+    _profilePicture = File(userData.profilePicture);
+
+    notifyListeners();
+  }
+
+  void getFullName() async {
+    final userData = await getUserDatas();
+    _fullNameValue = userData.fullname;
+  }
+
+  void getEmail() async {
+    final userData = await getUserDatas();
+    _emailValue = userData.email;
+  }
+
+  // void getPassword() async {
+  //   final userData = await getUserDatas();
+  //   _passwordValue = userData.
+  // }
+
+  void takePhoto() async {
+    final takenPhoto =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+
+    if (takenPhoto != null) {
+      _profilePicture = File(takenPhoto.path);
+    }
+    notifyListeners();
+  }
+
+  void choosePhoto() async {
+    final chosenPhoto =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (chosenPhoto != null) {
+      _profilePicture = File(chosenPhoto.path);
+    }
+    notifyListeners();
+  }
+
+  void removePhoto() async {
+    _profilePicture = null;
+    notifyListeners();
   }
 
   void openProfileBottomSheet(BuildContext context) {
     showModalBottomSheet(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: ThemeColor().profileCircle,
       context: context,
       builder: (context) {
         return Container(
@@ -81,7 +137,9 @@ class ProfileProvider extends ChangeNotifier {
                   'assets/icons/account_screen/profile_screen/bottom_sheet/ambil_foto_icon.svg',
                   height: 20,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  takePhoto();
+                },
                 tileColor: ThemeColor().white,
               ),
               const SizedBox(height: 4),
@@ -91,7 +149,9 @@ class ProfileProvider extends ChangeNotifier {
                   'assets/icons/account_screen/profile_screen/bottom_sheet/pilih_foto_icon.svg',
                   height: 18,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  choosePhoto();
+                },
                 tileColor: ThemeColor().white,
               ),
               const SizedBox(height: 4),
@@ -101,7 +161,9 @@ class ProfileProvider extends ChangeNotifier {
                   'assets/icons/account_screen/profile_screen/bottom_sheet/hapus_foto_icon.svg',
                   height: 20,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  removePhoto();
+                },
                 tileColor: ThemeColor().white,
               ),
             ],

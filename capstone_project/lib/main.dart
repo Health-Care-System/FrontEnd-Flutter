@@ -10,17 +10,12 @@ import 'package:capstone_project/provider/login_provider/check_user_password_pro
 import 'package:capstone_project/provider/medicine_provider/medicine_provider.dart';
 import 'package:capstone_project/provider/otp_provider.dart';
 import 'package:capstone_project/provider/register_provider/register_provider.dart';
-<<<<<<< HEAD
-import 'package:capstone_project/screens/account/profile/profile_screen.dart';
-import 'package:capstone_project/screens/bottom_bar/bottom_bar_screen.dart';
-=======
 import 'package:capstone_project/screens/account/account_screen.dart';
+import 'package:capstone_project/screens/account/profile/profile_screen.dart';
 import 'package:capstone_project/screens/detail_dokter_screen/detail_doctor_screen.dart';
->>>>>>> b8f23b4a12963fa6bffa86e7c91dac71dff0ac55
 import 'package:capstone_project/screens/home_screen/home_screen.dart';
 import 'package:capstone_project/screens/login/login_screen.dart';
 import 'package:capstone_project/screens/medicine_list/medicine_list_screen.dart';
-import 'package:capstone_project/screens/pay_doctor/consultation_fee.dart';
 import 'package:capstone_project/screens/register/register_screen.dart';
 import 'package:capstone_project/screens/splash_screen/splash_screen.dart';
 import 'package:capstone_project/screens/view_available_doctor/doctor_screen.dart';
@@ -63,14 +58,13 @@ void main() async {
         create: (context) => ArticlesListProvider(),
       ),
       ChangeNotifierProvider(
-<<<<<<< HEAD
         create: (context) => ProfileProvider(),
-=======
+      ),
+      ChangeNotifierProvider(
         create: (context) => CheckLoginProvider(),
       ),
       ChangeNotifierProvider(
         create: (context) => LoginProcessProvider(),
->>>>>>> b8f23b4a12963fa6bffa86e7c91dac71dff0ac55
       ),
     ],
     child: const MyApp(),
@@ -90,9 +84,6 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: ThemeColor().primaryFrame,
         useMaterial3: true,
       ),
-<<<<<<< HEAD
-      home: const ProfileScreen(),
-=======
       routes: <String, WidgetBuilder>{
         '/splash': (BuildContext context) => const SplashScreen(),
         '/register': (BuildContext context) => const RegisterScreen(),
@@ -112,8 +103,7 @@ class MyApp extends StatelessWidget {
         '/medHistory': (BuildContext context) => const AccountScreen(),
       },
       // initialRoute: '/splash',
-      home: const SplashScreen(),
->>>>>>> b8f23b4a12963fa6bffa86e7c91dac71dff0ac55
+      home: const MedicineListScreen(),
     );
   }
 }
