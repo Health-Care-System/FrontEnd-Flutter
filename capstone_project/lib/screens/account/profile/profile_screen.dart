@@ -14,7 +14,6 @@ import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
-import 'package:group_button/group_button.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:textfield_datepicker/textfield_datepicker.dart';
@@ -31,9 +30,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   DateTime currentDate = DateTime.now();
 
-  final List<String> _jenisKelamin = [
-    'Laki-Laki',
-    'Perempuan',
+  final List<CoolDropdownItem<String>> _jenisKelaminDropdownItem = [
+    CoolDropdownItem(label: 'Laki - Laki', value: 'male'),
+    CoolDropdownItem(label: 'Perempuan', value: 'female'),
   ];
 
   final List<CoolDropdownItem<String>> _golonganDarahDropdownItem = [
@@ -49,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final _golonganDarahController = DropdownController();
 
-  final _jenisKelaminController = GroupButtonController();
+  final _jenisKelaminController = DropdownController();
 
   @override
   Widget build(BuildContext context) {
@@ -288,48 +287,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: SvgPicture.asset(
                       'assets/icons/account_screen/profile_screen/gender_icon.svg',
                     ),
-                    content: SizedBox(
-                      height: 32,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5, right: 5),
-                        child: GroupButton(
-                          buttons: _jenisKelamin,
-                          options: GroupButtonOptions(
+                    content: Padding(
+                      padding: const EdgeInsets.only(left: 5, right: 5),
+                      child: CoolDropdown(
+                        dropdownList: _jenisKelaminDropdownItem,
+                        controller: _jenisKelaminController,
+                        onChange: (value) {
+                          debugPrint(value);
+                        },
+                        onOpen: (value) {},
+                        resultOptions: ResultOptions(
+                          height: 30,
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          textStyle: ThemeTextStyle().bodySmall,
+                          placeholder: 'L/P',
+                          placeholderTextStyle:
+                              ThemeTextStyle().bodySmall.copyWith(
+                                    color: ThemeColor().placeHolder,
+                                  ),
+                          render: ResultRender.all,
+                          boxDecoration: BoxDecoration(
+                            color: ThemeColor().textField,
                             borderRadius: BorderRadius.circular(4),
-                            buttonWidth:
-                                MediaQuery.of(context).size.width * 1 / 5.2,
-                            buttonHeight: 30,
-                            direction: Axis.horizontal,
-                            unselectedBorderColor: Colors.grey[400],
-                            selectedBorderColor:
-                                ThemeColor().primaryButtonActive,
-                            unselectedTextStyle: const TextStyle(
-                              color: Colors.grey,
+                          ),
+                          openBoxDecoration: BoxDecoration(
+                            color: ThemeColor().white,
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(
+                              color: ThemeColor().primaryButtonActive,
+                              width: 2,
                             ),
-                            selectedColor: ThemeColor().primaryButtonActive,
-                            selectedShadow: [
-                              BoxShadow(
+                          ),
+                        ),
+                        dropdownItemOptions: DropdownItemOptions(
+                          textStyle: ThemeTextStyle().bodySmall,
+                          height: 30,
+                          render: DropdownItemRender.all,
+                          selectedPadding: EdgeInsets.zero,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          selectedBoxDecoration: BoxDecoration(
+                            border: Border(
+                              left: BorderSide(
                                 color: ThemeColor()
                                     .primaryButtonActive
-                                    .withOpacity(0.2),
-                                blurRadius: 20,
+                                    .withOpacity(0.7),
+                                width: 3,
                               ),
-                            ],
-                            unselectedShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                blurRadius: 20,
-                              )
-                            ],
+                            ),
                           ),
-                          isRadio: true,
-                          controller: _jenisKelaminController,
-                          onSelected: (val, i, selected) {
-                            debugPrint('Button: $val index: $i $selected');
-                            _jenisKelaminController.selectIndex(i);
-                            debugPrint(
-                                '${_jenisKelaminController.selectedIndex}');
-                          },
                         ),
                       ),
                     ),
