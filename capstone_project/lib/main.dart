@@ -102,8 +102,8 @@ class MyApp extends StatelessWidget {
         '/consultHistory': (BuildContext context) => const AccountScreen(),
         '/medHistory': (BuildContext context) => const AccountScreen(),
       },
-      // initialRoute: '/splash',
-      home: const MedicineListScreen(),
+      initialRoute: '/splash',
+      // home: const MedicineListScreen(),
     );
   }
 }

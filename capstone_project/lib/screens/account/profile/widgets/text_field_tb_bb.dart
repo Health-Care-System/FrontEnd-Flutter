@@ -7,12 +7,14 @@ class TextFieldTbBb extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final TextInputAction? textInputAction;
+  final bool? enabled;
 
   const TextFieldTbBb({
     super.key,
     required this.title,
     required this.hintText,
     required this.controller,
+    this.enabled,
     this.textInputAction,
   });
 
@@ -23,6 +25,7 @@ class TextFieldTbBb extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 1 / 17,
       child: TextFormField(
         controller: controller,
+        enabled: enabled,
         style: ThemeTextStyle().labelMedium,
         cursorColor: ThemeColor().primaryFrame,
         keyboardType: TextInputType.number,

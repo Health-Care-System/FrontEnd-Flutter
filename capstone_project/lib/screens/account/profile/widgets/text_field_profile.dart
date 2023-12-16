@@ -13,6 +13,7 @@ class TextFieldProfile extends StatelessWidget {
   final String? errorText;
   final int? maxLines;
   final FocusNode? focusNode;
+  final bool? enabled;
 
   const TextFieldProfile({
     super.key,
@@ -26,6 +27,7 @@ class TextFieldProfile extends StatelessWidget {
     this.errorText,
     this.maxLines,
     this.focusNode,
+    this.enabled,
   });
 
   @override
@@ -33,6 +35,7 @@ class TextFieldProfile extends StatelessWidget {
     return SizedBox(
       height: 35,
       child: TextFormField(
+        enabled: enabled,
         style: ThemeTextStyle().bodySmall,
         onChanged: onChanged,
         validator: validator,

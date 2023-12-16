@@ -1,10 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/models/api/profile_api.dart';
 import 'package:capstone_project/models/profile_model.dart';
 import 'package:capstone_project/screens/account/profile/widgets/bottomsheet_tile.dart';
+import 'package:capstone_project/utils/utils.dart';
 import 'package:cool_dropdown/cool_dropdown.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:group_button/group_button.dart';
@@ -62,6 +65,60 @@ class ProfileProvider extends ChangeNotifier {
     getFullName();
     getEmail();
     return response!;
+  }
+
+  Future<ProfileResults> updateUserDatas()async{
+    ProfileResults? response;
+    final token = SharedPreferencesUtils.getToken();
+
+    try {
+      final updateData = {
+        'fullname' : _fullNameValue,
+        'email': _emailValue,
+        'phone' : _phoneValue,
+        'birthdate' : _birthdateValue,
+        'gender' : _gender,
+        'bloodType' : _bloodType,
+        'height' : _tbValue,
+        'weight' : _bbValue,
+      };
+      final jsonData = jsonEncode(updateData);
+
+      final dioResponse = await Dio().put(
+         '${Urls.baseUrl}${Urls.profile}',
+         data: jsonData,
+         options: Options(
+          headers: {
+             "Authorization": "Bearer $token",
+          },
+         ),
+      );
+      if (dioResponse.statusCode == 201) {
+        debugPrint('Profile update successfully');
+        response = ProfileResults.fromJson(dioResponse.data);
+        
+      }else{
+        debugPrint('Error updating profile: ${dioResponse.statusCode}');
+      }
+      
+    } catch (e) {
+      debugPrint('Dio Error : $e');
+    }
+    return response!;
+  }
+
+
+  void updateUserProfile() async{
+    final userData = await updateUserDatas();
+    
+    // Update fields
+    _profilePicture = File(userData.profilePicture);
+    _bbValue = userData.weight.toString();
+    _tbValue = userData.height.toString();
+    _birthdateValue = userData.birthdate;
+    _gender = userData.gender;
+    _bloodType = userData.bloodType;
+    notifyListeners();
   }
 
   void getProfilePicture() async {

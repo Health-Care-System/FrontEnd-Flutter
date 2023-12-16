@@ -62,4 +62,61 @@ class ProfileApi {
     }
     return userData;
   }
+
+  /// UPDATE USER PROFILE
+    static Future<ProfileResults?> updateUserProfile() async {
+    ProfileResults? userData;
+    final token = SharedPreferencesUtils.getToken();
+
+    try {
+      final response = await Dio().put(
+        '${Urls.baseUrl}${Urls.profile}',
+        options: Options(
+          headers: {
+            "Authorization": "Bearer $token",
+          },
+        ),
+      );
+
+      final profileModel = profileModelFromJson(jsonEncode(response.data));
+      userData = profileModel.results;
+    } on DioException catch (e) {
+      final errorModel = profileModelFromJson(jsonEncode(e.response?.data));
+
+      if (e.response?.statusCode == 401) {
+        debugPrint(
+            'success: ${errorModel.meta.success}, message: ${errorModel.meta.message}');
+
+        debugPrint(
+            'Error ${e.response?.statusCode} ${e.response?.statusMessage}');
+
+        final errorMessageModel = errorModel.meta.message;
+        debugPrint(errorMessageModel);
+        throw errorMessageModel;
+      } else if (e.response?.statusCode == 500) {
+        if (errorModel.meta.message == "Invalid or Expired Token") {
+          debugPrint(
+              'success: ${errorModel.meta.success}, message: ${errorModel.meta.message}');
+
+          debugPrint(
+              'Error ${e.response?.statusCode} ${e.response?.statusMessage}');
+
+          final errorMessageModel = errorModel.meta.message;
+          debugPrint(errorMessageModel);
+          throw errorMessageModel;
+        } else if (errorModel.meta.message == "Missing Token") {
+          debugPrint(
+              'success: ${errorModel.meta.success}, message: ${errorModel.meta.message}');
+
+          debugPrint(
+              'Error ${e.response?.statusCode} ${e.response?.statusMessage}');
+
+          final errorMessageModel = errorModel.meta.message;
+          debugPrint(errorMessageModel);
+          throw errorMessageModel;
+        }
+      }
+    }
+    return userData;
+  }
 }

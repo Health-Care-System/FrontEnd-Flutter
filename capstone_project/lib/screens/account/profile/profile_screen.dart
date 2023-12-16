@@ -1,9 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/constants/text_theme.dart';
 import 'package:capstone_project/models/api/profile_api.dart';
-import 'package:capstone_project/models/profile_model.dart';
 import 'package:capstone_project/provider/account_provider/profile_provider/profile_provider.dart';
 import 'package:capstone_project/screens/account/profile/new_pass_screen/new_pass_screen.dart';
 import 'package:capstone_project/screens/account/profile/widgets/profile_tile_widget.dart';
@@ -13,7 +14,6 @@ import 'package:cool_dropdown/cool_dropdown.dart';
 import 'package:cool_dropdown/models/cool_dropdown_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg_provider;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:textfield_datepicker/textfield_datepicker.dart';
@@ -54,9 +54,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfileProvider>(context);
     profileProvider.getUserDatas();
-    // profileProvider.getProfilePicture();
-    // profileProvider.getEmail();
-    // profileProvider.getFullName();
 
     return GestureDetector(
       onTap: () {
@@ -130,9 +127,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                   ),
                   const SizedBox(height: 12),
-                  Text(
-                    'Edit',
-                    style: ThemeTextStyle().titleMedium,
+                  TextButton(
+                    child: Text(
+                      "Edit",
+                      style: ThemeTextStyle().titleMedium,
+                    ),
+                    onPressed: () async {
+                      await profileProvider.updateUserDatas();
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Profile updated successfully"),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 12),
                   Text(
