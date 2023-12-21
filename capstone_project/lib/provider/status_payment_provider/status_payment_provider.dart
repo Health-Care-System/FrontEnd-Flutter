@@ -4,16 +4,19 @@ import 'package:flutter/material.dart';
 
 class StatusPaymentProvider extends ChangeNotifier {
   PayDoc? _statusData; // Use nullable type
+  bool _loading = false;
 
   PayDoc? get statusData => _statusData;
+  bool get loading => _loading;
 
   Future<void> fetchStatusData(int limit) async {
     try {
       _statusData = await StatusTransactionApi.getStatusTransaction(limit);
+      _loading = true;
       notifyListeners();
     } catch (e) {
       // Log error details
-      print('Error fetching status data: $e');
+      rethrow;
     }
   }
 }

@@ -1,6 +1,6 @@
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/constants/text_theme.dart';
-import 'package:capstone_project/provider/menu_doctor_provider.dart';
+import 'package:capstone_project/provider/doctor_provider/menu_doctor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +9,7 @@ class MenuDoctor extends StatelessWidget {
   final Function(int) onMenuChanged;
   final List<String> doctorItems;
 
-  MenuDoctor({
+  const MenuDoctor({super.key, 
     required this.selectedMenuIndex,
     required this.onMenuChanged,
     required this.doctorItems,

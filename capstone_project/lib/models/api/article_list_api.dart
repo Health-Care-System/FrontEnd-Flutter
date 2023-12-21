@@ -18,17 +18,34 @@ class AllArticleListAPI {
       } else {
         // Handle other cases, including 401
         if (response.statusCode == 401) {
-          print("Unauthorized access: ${response.data}");
           return data;
         } else {
-          print("Error: ${response.statusCode}");
           return data;
         }
       }
     } catch (error) {
-      print("Error: $error");
+      rethrow;
     }
+  }
 
-    return null;
+  static final Dio _dio = Dio();
+
+  static Future<ListArticles> getArticlesByTitle(String query) async {
+    try {
+      final response = await _dio
+          .get('https://api.healthify.my.id/users/article', queryParameters: {
+        'title': query,
+        'offset': 0,
+        'limit': 10,
+      });
+
+      if (response.statusCode == 200) {
+        return ListArticles.fromJson(response.data);
+      } else {
+        throw Exception('Failed to load articles by title');
+      }
+    } catch (e) {
+      throw Exception('Error: $e');
+    }
   }
 }

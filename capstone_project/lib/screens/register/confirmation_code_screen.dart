@@ -1,7 +1,7 @@
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/constants/text_theme.dart';
 import 'package:capstone_project/models/api/otp_api.dart';
-import 'package:capstone_project/provider/otp_provider.dart';
+import 'package:capstone_project/provider/register_provider/otp_provider.dart';
 import 'package:capstone_project/provider/register_provider/register_provider.dart';
 import 'package:capstone_project/widgets/button_widget.dart';
 import 'package:capstone_project/widgets/input_box_widget.dart';
@@ -113,7 +113,6 @@ class _ConfirmationCodeScreenState extends State<ConfirmationCodeScreen> {
                         ? () async {
                             String enteredOtp =
                                 '${otpProvider.otp1Controller.text}${otpProvider.otp2Controller.text}${otpProvider.otp3Controller.text}${otpProvider.otp4Controller.text}';
-                            print(enteredOtp);
                             await OtpApi().registerUser(
                                 context,
                                 registerProvider.emailController.text,

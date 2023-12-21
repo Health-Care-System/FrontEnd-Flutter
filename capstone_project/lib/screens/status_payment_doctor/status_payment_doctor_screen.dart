@@ -1,18 +1,14 @@
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/constants/text_theme.dart';
-import 'package:capstone_project/provider/status_payment_provider.dart';
+import 'package:capstone_project/provider/status_payment_provider/status_payment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class StatusPaymentDoctorScreen extends StatefulWidget {
-  final int doctorId;
-  final String selectedPaymentMethod;
   final int idTran;
 
   const StatusPaymentDoctorScreen({
     super.key,
-    required this.doctorId,
-    required this.selectedPaymentMethod,
     required this.idTran,
   });
 
@@ -70,7 +66,7 @@ class _StatusPaymentDoctorScreenState extends State<StatusPaymentDoctorScreen> {
                 const SizedBox(height: 20),
                 Text(
                     'Transaksi Pembayaran: ${statusData?.results?.paymentConfirmation}'),
-                Text('Metode Pembayaran: ${widget.selectedPaymentMethod}'),
+                Text('Metode Pembayaran: ${statusData?.results?.paymentMethod}'),
                 // Image.asset(getBankLogo(statusData?.results?)),
                 Text('Nama Dokter: ${statusData?.results?.fullname}'),
                 Text('Spesialisasi: ${statusData?.results?.specialist}'),
@@ -81,12 +77,12 @@ class _StatusPaymentDoctorScreenState extends State<StatusPaymentDoctorScreen> {
                           // Tambahkan logika untuk memulai konsultasi
                         }
                       : null,
-                  child: const Text('Mulai Konsultasi'),
                   style: ElevatedButton.styleFrom(
-                    primary: (statusData?.results?.paymentStatus == "success")
+                    backgroundColor: (statusData?.results?.paymentStatus == "success")
                         ? Colors.green
                         : Colors.grey,
                   ),
+                  child: const Text('Mulai Konsultasi'),
                 ),
               ],
             );

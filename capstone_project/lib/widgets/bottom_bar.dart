@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:capstone_project/constants/color_theme.dart';
 import 'package:capstone_project/screens/bottom_bar/inherited_data_provider.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +24,11 @@ class BottomBar extends StatefulWidget {
     required this.barColor,
     required this.end,
     required this.start,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
+  // ignore: library_private_types_in_public_api
   _BottomBarState createState() => _BottomBarState();
 }
 
