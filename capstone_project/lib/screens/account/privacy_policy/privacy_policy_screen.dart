@@ -35,79 +35,84 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                 padding: const EdgeInsets.only(
                   top: 20,
                 ),
-                child: Text(
-                  'Kebijakan Privasi Kesehatan',
-                  style: ThemeTextStyle()
-                      .titleMedium2
-                      .copyWith(fontWeight: FontWeight.bold),
+                child: Center(
+                  child: Text(
+                    'KEBIJAKAN PRIVASI KESEHATAN',
+                    style: ThemeTextStyle()
+                        .titleLarge
+                        .copyWith(fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
-              const SizedBox(height: 30),
-              Text(
-                'Terakhir Diperbarui: 18/10/2023',
-                style: ThemeTextStyle().bodyMedium.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+              const SizedBox(height: 10),
+              Center(
+                child: Text(
+                  'Terakhir Diperbarui: 18/10/2023',
+                  style: ThemeTextStyle().bodyMedium.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
               ),
               const SizedBox(height: 40),
-              Text(
-                'Alterra Healthcare',
-                style: ThemeTextStyle().bodyMedium.copyWith(
-                      fontWeight: FontWeight.bold,
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 250,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(height: 40),
+                    Text(
+                      'Alterra Healthcare',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.justify,
                     ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 4,
-                ),
-                child: Text(
-                  'Jl. Keputih Tegal timur No.108',
-                  style: ThemeTextStyle().bodyMedium.copyWith(
+                    SizedBox(height: 4),
+                    Text(
+                      'Jl. Keputih Tegal timur No.108',
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 4,
-                ),
-                child: Text(
-                  'Jawa Timur, 60112',
-                  style: ThemeTextStyle().bodyMedium.copyWith(
+                      textAlign: TextAlign.justify,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Jawa Timur, 60112',
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 4,
-                ),
-                child: Text(
-                  '031-67652829',
-                  style: ThemeTextStyle().bodyMedium.copyWith(
+                      textAlign: TextAlign.justify,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      '031-67652829',
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 4,
-                ),
-                child: Text(
-                  'alterra.health@care.org',
-                  style: ThemeTextStyle().bodyMedium.copyWith(
+                      textAlign: TextAlign.justify,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'alterra.health@care.org',
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 60),
               Text(
-                '1. Pendahuluan',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '1. PENDAHULUAN',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -117,16 +122,17 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 30),
               Text(
-                '2. Informasi yang Kami Kumpulkan',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '2. INFORMASI YANG KAMI KUMPULKAN',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -136,6 +142,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -147,6 +154,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -158,16 +166,17 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 30),
               Text(
-                '3. Penggunaan Informasi',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '3. PENGGUNAAN INFORMASI',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -177,6 +186,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -188,6 +198,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -199,6 +210,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -210,6 +222,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -221,16 +234,17 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 30),
               Text(
-                '4. Pengungkapan Informasi',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '4. PENGUNGKAPAN INFORMASI',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -240,6 +254,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -251,6 +266,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -262,6 +278,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -273,6 +290,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -284,16 +302,17 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 30),
               Text(
-                '5. Hak Anda',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '5. HAK ANDA',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -303,6 +322,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -314,6 +334,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -325,6 +346,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -336,6 +358,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -347,6 +370,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -358,16 +382,17 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 30),
               Text(
-                '6. Keamanan Data',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '6. KEAMANAN DATA',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -377,16 +402,18 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 30),
               Text(
-                '7. Perubahan pada Kebijakan Privasi Ini',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '7. PERUBAHAN PADA KEBIJAKAN PRIVASI INI',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
+                textAlign: TextAlign.justify,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -396,16 +423,17 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               const SizedBox(height: 30),
               Text(
-                '8. Informasi Kontak',
-                style: ThemeTextStyle().bodyMedium.copyWith(
+                '8. INFORMASI KONTAK',
+                style: ThemeTextStyle().titleMedium.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(
                   right: 8,
@@ -415,6 +443,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -427,6 +456,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
@@ -439,6 +469,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                   style: ThemeTextStyle().bodyMedium.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
             ],
